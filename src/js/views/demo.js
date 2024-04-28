@@ -8,35 +8,51 @@ import "../../styles/demo.css";
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
 
+	const [fullName, setFullName] = useState("")
+	const [email, setEmail] = useState("")
+	const [phone, setPhone] = useState("")
+	const [address, setAddress] = useState("")
+
+	const handleSave = () => {
+		const newContact = {
+			"name": fullName,
+  			"phone": email,
+  			"email": phone,
+  			"address": address
+		}
+
+		actions.addContact(newContact)
+
+		setFullName("")
+		setEmail("")
+		setPhone("")
+		setAddress("")
+	}
+
 	return (
 		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
+			<h1>Add a new contact</h1>
+			<div className="form-group">
+				<label htmlFor="fullName">Full Name</label>
+				<input type="text" className="form-control" id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+			</div>
+			<div className="form-group">
+				<label htmlFor="email">Email</label>
+				<input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+			</div>
+			<div className="form-group">
+				<label htmlFor="phone">Phone</label>
+				<input type="tel" className="form-control" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+			</div>
+			<div className="form-group">
+				<label htmlFor="address">Full Name</label>
+				<input type="text" className="form-control" id="address" value={address} onChange={(e) => setAddress(e.target.value)} />
+			</div>
+			<br />
+			<button onClick={handleSave}>Save</button>
 			<br />
 			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
+				<button className="btn btn-primary">or get back to contacts</button>
 			</Link>
 		</div>
 	);
