@@ -3,9 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
 export const Home = () => {
-
     const [createAgenda, setCreateAgenda] = useState("")
-    const [searchAgenda, setSearchAgenda] = useState("")
 
 	const { actions } = useContext(Context);
 
