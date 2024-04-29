@@ -10,11 +10,12 @@ export const Home = () => {
 	const { actions } = useContext(Context);
 
 	const handleCreateAgenda =() => {
-            console.log("Agenda created successfully",createAgenda); 
+            actions.crateAgendas(createAgenda)
+            setCreateAgenda("")
     };
 
 	const handleSearchAgendas =() => {
-        console.log("Agenda searched successfully",searchAgenda);
+        actions.loadAgendas()
     };
 
 	return(
@@ -25,7 +26,6 @@ export const Home = () => {
                     <button onClick={handleCreateAgenda}>Create Agenda</button>
                 </div>
 				<div className="col-6">
-                    <input type="text" value={searchAgenda} onChange={(e) => setSearchAgenda(e.target.value)}/>
 				    <button onClick={handleSearchAgendas}>Search Agenda</button>
                 </div>
             </div>
