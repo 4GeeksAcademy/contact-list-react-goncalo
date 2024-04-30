@@ -1,0 +1,36 @@
+img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    margin-left: 50px;
+}
+
+.contact-info {
+    margin-left: 50px;
+}
+
+p {
+    margin-bottom: 5px;
+}
+
+.info-icons {
+    margin-right: 15px;
+}
+
+.delete-and-update-icons {
+    margin-left: 60%;
+}
+
+.pen-icon {
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.trash-icon {
+    cursor: pointer;
+    color: black
+}
+
+.update-link {
+    color: black;
+}

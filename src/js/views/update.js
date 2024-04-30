@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-
 import { Context } from "../store/appContext";
+import { useParams, Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
 
 import "../../styles/demo.css";
 
-export const Demo = () => {
+export const Update = () => {
+    const { contactId } = useParams()
 	const { store, actions } = useContext(Context);
 
 	const [fullName, setFullName] = useState("")
@@ -14,14 +14,15 @@ export const Demo = () => {
 	const [address, setAddress] = useState("")
 
 	const handleSave = () => {
-		const newContact = {
+		const updateContact = {
+            "id": contactId,
 			"name": fullName,
   			"phone": email,
   			"email": phone,
   			"address": address
 		}
 
-		actions.createNewContact("mycontactlist",newContact);
+		actions.updateContact("mycontactlist",updateContact);
 
 		setFullName("")
 		setEmail("")
@@ -31,7 +32,7 @@ export const Demo = () => {
 
 	return (
 		<div className="container">
-			<h1 className="title">Add a new contact</h1>
+			<h1 className="title">Update a contact</h1>
 			<div className="form-group">
 				<label htmlFor="fullName"><strong>Full Name</strong></label>
 				<input type="text" className="form-control" id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} />
